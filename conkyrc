@@ -1,0 +1,121 @@
+conky.config = {
+
+-- Conky settings #
+	background = false,
+	update_interval = 1,
+
+	cpu_avg_samples = 1,
+	net_avg_samples = 1,
+	temperature_unit = 'celsius',
+
+	double_buffer = true,
+	no_buffers = true,
+	text_buffer_size = 2048,
+
+-- Window specifications #
+	own_window = true,
+	own_window_type='conky',
+	--own_window_type='override',
+	own_window_class = 'desktop',
+	own_window_class = 'Conky',
+	own_window_argb_visual = true,
+	own_window_argb_value = 150,
+	--own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	own_window_hints = 'below,sticky,skip_pager',
+	own_window_colour = '#484B52',
+	background = false,
+
+-- Alignment #
+	border_inner_margin = 0,
+	border_outer_margin = 0,
+	alignment = 'top_right',
+	minimum_width = 250, minimum_height = 900,
+	maximum_width = 300,
+        gap_x = 10,
+        gap_y = 37,
+
+-- Graphics settings #
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = false,
+	show_graph_scale=false,
+	show_graph_range=false,
+
+
+-- Text settings #
+	override_utf8_locale = true,
+	use_xft = true,
+        font = 'Denton:size=10',
+	xftalpha = 1,
+	uppercase = false,
+
+-- Color scheme #
+        color0 = 'FFFFFF',
+        color1 = '062b61', 
+        color2 = '000000', 
+        color3 = 'DE3D00', 
+        color4 = 'dcde1c', 
+        color5 = '0a57a4',
+        color6 = '06FF1C',
+        color7 = 'A40810', 
+};
+
+conky.text = [[
+${color3}${hr 3}
+${goto 10}${font Denton:size=15}${color1}${time %e}${font Denton:size=15}${color5}${time %b}${color1}${time %Y}  at ${nodename}  
+${goto 10}${loadgraph 80,280 DE3D00 062b61 -l}
+${color3}${hr 3}${color1}
+${font}${goto 10}KERNEL:${goto 140}${color8}$kernel${color1}
+${goto 10}CPU SPEED:${color8}${goto 140}${freq_g 4} GHz ${goto 180}${color1}
+${goto 10}${color1}IP:${goto 140}${color8}${addr lo}${color1}
+${goto 10}CPUs TEMP ${goto 140}${color8}${hwmon 0 temp 1}°C  ${hwmon 1 temp 1}°C  ${hwmon 3 temp 1}°C  ${hwmon 4 temp 1}°C 
+${goto 10}${color1}TRHEADS${goto 140}${color8}$threads/$running_threads
+${goto 10}${color1}N PROCESSES${goto 140}${color8}$running_processes
+${goto 10}${color1}FAN SPEED${goto 140}${color8}${hwmon 2 fan 1} RPM 
+${color3}${hr 3}${color5}${font Denton:size=9}
+${color1}${voffset 10}${goto 10}CPU0${goto 70}${cpubar cpu0  8,140}${color}${goto 220}${voffset -1}${cpugraph cpu0 10,70}${color1}
+${color1}${goto 10}CPU1${goto 70}${cpubar cpu1 8,140}${color0}${color1}${goto 220}${voffset -1}${cpugraph cpu1 10,70}${color1}
+${color1}${goto 10}CPU2${goto 70}${cpubar cpu2 8,140}${color0}${color2}${goto 220}${voffset -1}${cpugraph cpu2 10,70}${color1}
+${color1}${goto 10}CPU3${goto 70}${cpubar cpu3 8,140}${color0}${color3}${goto 220}${voffset -1}${cpugraph cpu3 10,70}${color1}
+${color1}${goto 10}CPU4${goto 70}${cpubar cpu4 8,140}${color0}${color4}${goto 220}${voffset -1}${cpugraph cpu4 10,70}${color1}
+${color1}${goto 10}CPU5${goto 70}${cpubar cpu5 8,140}${color0}${color5}${goto 220}${voffset -1}${cpugraph cpu5 10,70}${color1}
+${color1}${goto 10}CPU6${goto 70}${cpubar cpu4 8,140}${color0}${color6}${goto 220}${voffset -1}${cpugraph cpu6 10,70}${color1}
+${color1}${goto 10}CPU7${goto 70}${cpubar cpu4 8,140}${color0}${color7}${goto 220}${voffset -1}${cpugraph cpu7 10,70}${color1}
+${color3}${hr 3}
+${goto 10}${color1}${font Denton:size=9}RAM${goto 70}${membar  8,140} $mem/$memmax
+${goto 10}${memgraph 40,280 DE3D00 062b61 -l}
+${color3}${hr 3}${color5}
+${goto 10}${color1}WIFI: ${color7}${goto 115}${addr wlp4s0}${goto 220}${wireless_link_qual wlp4s0}%
+${goto 115}${wireless_essid wlp4s0}  
+${goto 10}${color1}DOWNSPEED:${color7}${goto 115}${downspeed wlp4s0} ${goto 170}/  ${totaldown wlp4s0}
+${goto 10}${color1}UPSPEED:${color7}${goto 115}${upspeed wlp4s0} ${goto 170}/ ${totalup wlp4s0}
+${offset 10}${color6}${downspeedgraph wlp4s0 20,280 FD7980 GAAAA5 -l} 
+${offset 10}${color1}${upspeedgraph wlp4s0 20,280 FD7980 A40810   -l}
+${goto 10}${color1}ETHERNET:${color7}${goto 115}${addr enp0s31f6} 
+${goto 10}${color1}DOWNSPEED:${color7}${goto 115}${downspeed enp0s31f6} ${goto 170}/ ${totaldown enp0s31f6}
+${goto 10}${color1}UPSPEED:${color7}${goto 115}${upspeed enp0s31f6} ${goto 170}/ ${totalup enp0s31f6}
+${offset 10}${color6}${downspeedgraph enp0s31f6 20,300 -l}${offset -300}${color1}${upspeedgraph enp0s31f6 20,300 -l}
+${color3}${hr 3}${color5}
+#$acpitemp
+#$laptop_mode
+${color1}${goto 10}Name${goto 150} CPU %${goto 200} RAM % 
+${voffset -10}$stippled_hr
+${color5}${goto 10}${top name 1}${goto 150}${top cpu 1}${goto 200}${top mem 1}
+${color5}${goto 10}${top name 2}${goto 150}${top cpu 2}${goto 200}${top mem 2}
+${color5}${goto 10}${top name 3}${goto 150}${top cpu 3}${goto 200}${top mem 3}
+${color5}${goto 10}${top name 4}${goto 150}${top cpu 4}${goto 200}${top mem 4} 
+${voffset -10}
+${color1}${goto 10}Name${goto 150} RAM %${goto 200} CPU % 
+${voffset -10}$stippled_hr
+${color2}${goto 10}${top_mem name 1}${goto 150}${top_mem mem 1}${goto 200}${top_mem cpu 1}
+${color2}${goto 10}${top_mem name 2}${goto 150}${top_mem mem 2}${goto 200}${top_mem cpu 2}
+${color2}${goto 10}${top_mem name 3}${goto 150}${top_mem mem 3}${goto 200}${top_mem cpu 3}
+${color2}${goto 10}${top_mem name 4}${goto 150}${top_mem mem 4}${goto 200}${top_mem cpu 4} 
+${color3}${hr 3}
+${goto 10}${color1}Battery: ${color7}${battery BAT0}${color1}  Time: ${color7}$battery_time
+#${goto 10}${color1}GPU T: ${color7}${nvidia temp}°C Mem ${nvidia membwutil}% of ${nvidia memtotal} Video${nvidia videoutil}%
+${goto 10}GPU ${nvidiabar 8,140  memused} ${nvidia memused}MiB/${nvidia memmax}MiB
+${goto 10}${color1}GPU Freq: ${color7}${nvidia gpufreq}MHz ${color1}IQ:${color7}${nvidia imagequality}${color1} Use:${color7}${nvidia gpuutil}% ${color1}T:${color7}${nvidia gputemp}°C
+${color3}${hr 3}
+]];
